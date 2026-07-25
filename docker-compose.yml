@@ -61,6 +61,8 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+      args:
+        - VUE_APP_API_URL=http://localhost:8081
     image: momo-store-frontend:latest
     container_name: momo-store-frontend
     restart: unless-stopped

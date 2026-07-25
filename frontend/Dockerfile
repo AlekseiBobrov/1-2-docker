@@ -1,6 +1,9 @@
 # Stage 1: Build Vue.js app
 FROM node:16-alpine AS builder
 
+ARG VUE_APP_API_URL
+ENV VUE_APP_API_URL=$VUE_APP_API_URL
+
 WORKDIR /app
 
 COPY package.json package-lock.json ./
