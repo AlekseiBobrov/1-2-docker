@@ -106,7 +106,7 @@ export default defineComponent({
         if(!error.isAxiosError || !error.response) {
           this.error_message = 'Connection error';
         } else {
-          this.error_message = error.response.data.detail;
+          this.error_message = (error.response.data as any).detail;
         }
 
       }).finally(() => {

@@ -90,7 +90,7 @@ export default defineComponent({
         if(!error.isAxiosError || !error.response) {
           this.error = 'Connection error';
         } else {
-          this.error = error.response.data.detail;
+          this.error = (error.response.data as any).detail;
         }
 
         this.loading = false;
