@@ -64,6 +64,13 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKER_USER }}/docker-project-frontend:latest
 
+      - name: Push nginx-lb to DockerHub
+        uses: docker/build-push-action@v4
+        with:
+          context: ./nginx-lb/
+          push: true
+          tags: ${{ secrets.DOCKER_USER }}/docker-project-nginx-lb:latest
+
   # ---------- Run with Docker Compose ----------
   run-with-docker-compose:
     name: Run with Docker Compose
