@@ -90,7 +90,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Pull images from DockerHub
-        run: docker compose pull --progress plain
+        run: docker compose pull
         env:
           DOCKER_USER: ${{ secrets.DOCKER_USER }}
 
