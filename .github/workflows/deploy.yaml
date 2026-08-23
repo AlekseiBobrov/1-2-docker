@@ -89,7 +89,12 @@ jobs:
           username: ${{ secrets.DOCKER_USER }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Run with Docker Compose (pull from DockerHub)
-        uses: hoverkraft-tech/compose-action@v2.2.0
+      - name: Pull images from DockerHub
+        run: docker compose pull --progress plain
+        env:
+          DOCKER_USER: ${{ secrets.DOCKER_USER }}
+
+      - name: Run services
+        run: docker compose up -d
         env:
           DOCKER_USER: ${{ secrets.DOCKER_USER }}
