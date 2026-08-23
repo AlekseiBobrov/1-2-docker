@@ -16,7 +16,7 @@ RUN npm run build
 # Stage 2: Build runtime image with Nginx
 FROM nginx:1.21-alpine
 
-RUN apk add --no-cache wget
+RUN apk add --no-cache curl
 
 RUN rm /etc/nginx/conf.d/default.conf
 
@@ -39,6 +39,6 @@ USER nginxuser
 EXPOSE 80
 
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-    CMD wget --no-verbose --tries=1 --spider http://localhost:80/ || exit 1
+    CMD curl -fsS http://localhost:80/ || exit 1
 
 CMD ["nginx", "-g", "daemon off;"]

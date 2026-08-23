@@ -15,7 +15,7 @@ RUN CGO_ENABLED=0 GOOS=linux go build -o /app ./cmd/api/
 # Stage 2: Build runtime image
 FROM alpine:3.15
 
-RUN apk add --no-cache ca-certificates tzdata wget
+RUN apk add --no-cache ca-certificates tzdata curl
 
 RUN adduser -D -u 1001 appuser
 
@@ -26,6 +26,6 @@ USER appuser
 EXPOSE 8081
 
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-    CMD wget --no-verbose --tries=1 -qO- http://localhost:8081/health || exit 1
+    CMD curl -fsS http://localhost:8081/health || exit 1
 
 CMD ["/app"]
