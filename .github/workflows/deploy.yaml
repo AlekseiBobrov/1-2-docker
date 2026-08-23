@@ -55,21 +55,21 @@ jobs:
         with:
           context: ./backend/
           push: true
-          tags: ${{ secrets.DOCKER_USER }}/docker-project-backend:latest
+          tags: ${{ secrets.DOCKER_USER }}/momo-store-backend:latest
 
       - name: Push Frontend to DockerHub
         uses: docker/build-push-action@v4
         with:
           context: ./frontend/
           push: true
-          tags: ${{ secrets.DOCKER_USER }}/docker-project-frontend:latest
+          tags: ${{ secrets.DOCKER_USER }}/momo-store-frontend:latest
 
       - name: Push nginx-lb to DockerHub
         uses: docker/build-push-action@v4
         with:
           context: ./nginx-lb/
           push: true
-          tags: ${{ secrets.DOCKER_USER }}/docker-project-nginx-lb:latest
+          tags: ${{ secrets.DOCKER_USER }}/momo-store-backend-lb:latest
 
   # ---------- Run with Docker Compose ----------
   run-with-docker-compose:
